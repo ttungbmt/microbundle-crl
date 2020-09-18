@@ -29,6 +29,7 @@ import {
 } from './lib/option-normalization';
 import { getConfigFromPkgJson, getName } from './lib/package-info';
 import { shouldCssModules, cssModulesConfig } from './lib/css-modules';
+import vue from 'rollup-plugin-vue'
 
 // Extensions to use when resolving modules
 const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs'];
@@ -455,6 +456,7 @@ function createConfig(options, entry, format, writeMeta) {
 						// use a regex to make sure to include eventual hoisted packages
 						include: /\/node_modules\//,
 					}),
+					vue(),
 					json(),
 					{
 						// We have to remove shebang so it doesn't end up in the middle of the code somewhere

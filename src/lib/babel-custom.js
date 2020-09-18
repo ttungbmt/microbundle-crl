@@ -118,6 +118,9 @@ export default () => {
 						{
 							name: 'babel-plugin-macros',
 						},
+						{
+							name: '@babel/plugin-proposal-export-default-from',
+						},
 					].filter(Boolean),
 				);
 
