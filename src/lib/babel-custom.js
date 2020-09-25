@@ -116,11 +116,25 @@ export default () => {
 								async: false,
 							},
 						{
-							name: 'babel-plugin-macros',
+							name: '@babel/plugin-proposal-decorators',
+							legacy: true,
 						},
 						{
 							name: '@babel/plugin-proposal-export-default-from',
 						},
+						{
+							name: '@babel/plugin-proposal-export-namespace-from',
+						},
+						{
+							name: '@babel/plugin-proposal-optional-chaining',
+						},
+						{
+							name: '@babel/plugin-proposal-nullish-coalescing-operator',
+						},
+						{
+							name: 'babel-plugin-macros',
+						},
+
 					].filter(Boolean),
 				);
 
