@@ -218,7 +218,7 @@ var customBabel = (() => {
         const isNodeTarget = targets && targets.node != null;
         const defaultPlugins = createConfigItems(babelCore, 'plugin', [{
           name: '@babel/plugin-syntax-import-meta'
-        }, {
+        }, !customOptions.jsxImportSource && {
           name: '@babel/plugin-transform-react-jsx',
           pragma: customOptions.pragma || 'h',
           pragmaFrag: customOptions.pragmaFrag || 'Fragment'
@@ -245,9 +245,18 @@ var customBabel = (() => {
           name: '@babel/plugin-transform-regenerator',
           async: false
         }, {
-          name: 'babel-plugin-macros'
+          name: '@babel/plugin-proposal-decorators',
+          legacy: true
         }, {
           name: '@babel/plugin-proposal-export-default-from'
+        }, {
+          name: '@babel/plugin-proposal-export-namespace-from'
+        }, {
+          name: '@babel/plugin-proposal-optional-chaining'
+        }, {
+          name: '@babel/plugin-proposal-nullish-coalescing-operator'
+        }, {
+          name: 'babel-plugin-macros'
         }].filter(Boolean));
         const babelOptions = config.options || {};
         const envIdx = (babelOptions.presets || []).findIndex(preset => presetEnvRegex.test(preset.file.request));
@@ -276,7 +285,11 @@ var customBabel = (() => {
             useBuiltIns: false,
             bugfixes: customOptions.modern,
             exclude: ['transform-async-to-generator', 'transform-regenerator']
-          }]);
+          }, customOptions.jsxImportSource && {
+            name: '@babel/preset-react',
+            runtime: 'automatic',
+            importSource: customOptions.jsxImportSource
+          }].filter(Boolean));
         } // Merge babelrc & our plugins together
 
 
@@ -951,7 +964,8 @@ function createConfig(options, entry, format, writeMeta) {
           } : undefined,
           pragma: options.jsx || 'h',
           pragmaFrag: options.jsxFragment || 'Fragment',
-          typescript: !!useTypescript
+          typescript: !!useTypescript,
+          jsxImportSource: options.jsxImportSource || false
         }
       }), options.compress !== false && [rollupPluginTerser.terser({
         sourcemap: true,
