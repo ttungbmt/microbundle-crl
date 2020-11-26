@@ -116,8 +116,9 @@
 		"typescript": "^3.9.5",
 		"rollup-plugin-vue": "^5.1.9",
     "vue-template-compiler": "^2.6.12",
-    "@vue/compiler-sfc": "^3.0.0-rc.12"
-	},
+    "@vue/compiler-sfc": "^3.0.0-rc.12",
+    "rollup-plugin-css-only": "^2.1.0"
+  },
 	"devDependencies": {
 		"@babel/cli": "^7.10.1",
 		"@babel/node": "^7.10.1",
