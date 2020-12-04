@@ -126,12 +126,6 @@ export default () => {
 							name: '@babel/plugin-proposal-export-namespace-from',
 						},
 						{
-							name: '@babel/plugin-proposal-optional-chaining',
-						},
-						{
-							name: '@babel/plugin-proposal-nullish-coalescing-operator',
-						},
-						{
 							name: '@babel/plugin-proposal-do-expressions',
 						},
 						{
