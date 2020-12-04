@@ -1,0 +1,4 @@
+- @babel/plugin-proposal-do-expressions
+- @vue/compiler-sfc
+- vue-template-compiler
+- rollup-plugin-vue

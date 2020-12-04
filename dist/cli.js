@@ -257,6 +257,8 @@ var customBabel = (() => {
         }, {
           name: '@babel/plugin-proposal-nullish-coalescing-operator'
         }, {
+          name: '@babel/plugin-proposal-do-expressions'
+        }, {
           name: 'babel-plugin-macros'
         }].filter(Boolean));
         const babelOptions = config.options || {};
@@ -528,6 +530,8 @@ function processCssmodulesArgument(options) {
   if (options['css-modules'] === 'null' || options['css-modules'] === null) return null;
   return options['css-modules'];
 }
+
+// Extensions to use when resolving modules
 
 const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs'];
 const WATCH_OPTS = {
@@ -915,7 +919,8 @@ function createConfig(options, entry, format, writeMeta) {
       }), commonjs({
         // use a regex to make sure to include eventual hoisted packages
         include: /\/node_modules\//
-      }), css(), vue({
+      }), css(), // @ttungbmt
+      vue({
         needMap: false,
         // fix: Error: Multiple conflicting contents for sourcemap source
         css: true
@@ -976,7 +981,8 @@ function createConfig(options, entry, format, writeMeta) {
           targets: options.target === 'node' ? {
             node: '8'
           } : undefined,
-          pragma: options.jsx || 'h',
+          pragma: options.jsx || 'React.createElement',
+          // @ttungbmt
           pragmaFrag: options.jsxFragment || 'Fragment',
           typescript: !!useTypescript,
           jsxImportSource: options.jsxImportSource || false

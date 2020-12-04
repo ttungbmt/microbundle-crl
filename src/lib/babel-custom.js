@@ -132,6 +132,9 @@ export default () => {
 							name: '@babel/plugin-proposal-nullish-coalescing-operator',
 						},
 						{
+							name: '@babel/plugin-proposal-do-expressions',
+						},
+						{
 							name: 'babel-plugin-macros',
 						},
 

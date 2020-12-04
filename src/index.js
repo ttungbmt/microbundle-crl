@@ -29,8 +29,8 @@ import {
 } from './lib/option-normalization';
 import { getConfigFromPkgJson, getName } from './lib/package-info';
 import { shouldCssModules, cssModulesConfig } from './lib/css-modules';
-import vue from 'rollup-plugin-vue'
-import css from 'rollup-plugin-css-only'
+import vue from 'rollup-plugin-vue' // @ttungbmt
+import css from 'rollup-plugin-css-only' // @ttungbmt
 
 // Extensions to use when resolving modules
 const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs'];
@@ -477,6 +477,7 @@ function createConfig(options, entry, format, writeMeta) {
 						include: /\/node_modules\//,
 					}),
 					css(),
+					// @ttungbmt
 					vue({
 						needMap: false, // fix: Error: Multiple conflicting contents for sourcemap source
 						css: true
@@ -544,7 +545,7 @@ function createConfig(options, entry, format, writeMeta) {
 							modern,
 							compress: options.compress !== false,
 							targets: options.target === 'node' ? { node: '8' } : undefined,
-							pragma: options.jsx || 'h',
+							pragma: options.jsx || 'React.createElement', // @ttungbmt
 							pragmaFrag: options.jsxFragment || 'Fragment',
 							typescript: !!useTypescript,
 							jsxImportSource: options.jsxImportSource || false,
